@@ -1,0 +1,91 @@
+<!-- Body Start -->
+<div class="sa4d25">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2 class="st_title"><i class="uil uil-file-alt"></i>Test Name</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-8 col-md-7">
+        <div class="top_countries mt-30">
+          <div class="top_countries_title">
+            <h2>Description</h2>
+          </div>
+          <div class="statement_content">
+            <p class="tt-body">{{testDetail.description}}</p>
+            <a href="#" class="apply_instructor_btn" routerLink="/test">Start Test</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-5">
+        <div class="top_countries mt-30">
+          <div class="top_countries_title">
+            <h2>Feedback</h2>
+          </div>
+          <div class="statement_content">
+            <div class="fcrse_content2">
+
+              <div class="allvperf">
+                <div class="crse-perf-left">Grading Status</div>
+                <div class="crse-perf-right">{{testDetail.gradingStatus}}</div>
+              </div>
+
+              <div class="allvperf">
+                <div class="crse-perf-left">Grade</div>
+                <div class="crse-perf-right"><span class="per_text2">{{testDetail.grade}}</span></div>
+              </div>
+
+              <div class="allvperf">
+                <div class="crse-perf-left">Graded On</div>
+                <div class="crse-perf-right">{{testDetail.gradedDate}}</div>
+              </div>
+
+              <div class="allvperf">
+                <div class="crse-perf-left">Graded by</div>
+                <div class="crse-perf-right">{{testDetail.gradedBy}}</div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-lg-8 col-md-7">
+        <div class="top_countries mt-30">
+          <div class="top_countries_title">
+            <h2>Submission Status</h2>
+          </div>
+          <div class="statement_content">
+            <div class="fcrse_content2">
+
+              <div class="allvperf">
+                <div class="crse-perf-left"><span class="analyics_pr">Due date</span></div>
+                <div class="crse-perf-right"><span class="per_text2">{{testDetail.dueDate}}</span></div>
+              </div>
+
+              <div class="allvperf">
+                <div class="crse-perf-left">Time remaining</div>
+                <div class="crse-perf-right">{{testDetail.timeRemaining}}</div>
+              </div>
+
+              <div class="allvperf">
+                <div class="crse-perf-left">Submission Status</div>
+                <div class="crse-perf-right">{{testDetail.submissionStatus}}</div>
+              </div>
+
+              <div class="allvperf">
+                <div class="crse-perf-left">Submission Date</div>
+                <div class="crse-perf-right">{{testDetail.submissionDate}}</div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Body End -->
