@@ -1,0 +1,43 @@
+<!-- Body Start -->
+<div class="sa4d25">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2 class="st_title"><i class="uil uil-book-alt"></i>Test History</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="my_courses_tabs">
+          <div>
+            <div class="table-responsive">
+              <table class="table ucp-table" id="content-table">
+                <thead class="thead-s">
+                <tr>
+                  <th class="text-center" scope="col">Attempt No.</th>
+                  <th scope="col">Title</th>
+                  <th class="text-center" scope="col">Test Type</th>
+                  <th class="text-center" scope="col">Due Date</th>
+                  <th class="text-center" scope="col">Test Date</th>
+                  <th class="text-center" scope="col">Results</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let test of history">
+                  <td class="text-center">{{test.attemptNo}}</td>
+                  <td class="cell-ta">{{test.title}}</td>
+                  <td class="text-center">{{test.type}}</td>
+                  <td class="text-center">{{test.dueDate}}</td>
+                  <td class="text-center">{{test.submissionDate}}</td>
+                  <td class="text-center"><a href="#" routerLink="/test-detail">View</a></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Body End -->
