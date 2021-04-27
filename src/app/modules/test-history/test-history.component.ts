@@ -1,15 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 import {TestHistory} from '../../shared/models/test-history.model';
 import {TestHistoryService} from '../../shared/services/test-history.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-test-history',
   templateUrl: './test-history.component.html',
   styleUrls: ['./test-history.component.css']
 })
-export class TestHistoryComponent implements OnInit{
+export class TestHistoryComponent implements OnInit {
 
-  history: TestHistory[];
+  history$: Observable<TestHistory[]>;
 
   constructor(
     private testHistoryService: TestHistoryService,
@@ -20,8 +21,7 @@ export class TestHistoryComponent implements OnInit{
   }
 
   getTestHistory(): void {
-    this.testHistoryService.getTestHistory()
-      .subscribe(history => this.history = history);
+    this.history$ = this.testHistoryService.getTestHistory();
   }
 
 }

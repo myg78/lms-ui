@@ -23,12 +23,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let test of history">
-                  <td class="text-center">{{test.attemptNo}}</td>
-                  <td class="cell-ta">{{test.title}}</td>
-                  <td class="text-center">{{test.type}}</td>
-                  <td class="text-center">{{test.dueDate}}</td>
-                  <td class="text-center">{{test.submissionDate}}</td>
+                <tr *ngFor="let test of history$ | async">
+                  <td class="text-center">{{test.attempt_number}}</td>
+                  <td class="cell-ta">{{test.test.title}}</td>
+                  <td class="text-center">{{test.test.type | titlecase}}</td>
+                  <td class="text-center">{{test.test.due_date | date:'medium'}}</td>
+                  <td class="text-center">{{test.submission_date | date:'medium'}}</td>
                   <td class="text-center"><a href="#" routerLink="/test-detail">View</a></td>
                 </tr>
                 </tbody>

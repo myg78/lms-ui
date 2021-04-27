@@ -18,6 +18,7 @@ import {TestResultComponent} from './modules/test-result/test-result.component';
 import {CountdownModule} from 'ngx-countdown';
 import {TestDetailComponent} from './modules/test-detail/test-detail.component';
 import {GradesComponent} from './modules/grades/grades.component';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import {GradesComponent} from './modules/grades/grades.component';
     MatRadioModule,
     MatSnackBarModule,
     MatTableModule,
-    CountdownModule
+    CountdownModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
