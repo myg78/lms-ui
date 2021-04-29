@@ -10,7 +10,7 @@ import {GradesComponent} from './modules/grades/grades.component';
 const routes: Routes = [
   { path: 'test-history', component: TestHistoryComponent },
   { path: 'test-info', component: TestInfoComponent },
-  { path: 'test-detail', component: TestDetailComponent },
+  { path: 'test-detail/:id', component: TestDetailComponent },
   { path: 'test', component: TestViewComponent },
   { path: 'test-result', component: TestResultComponent },
   { path: 'grades', component: GradesComponent }

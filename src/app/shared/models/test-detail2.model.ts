@@ -5,4 +5,5 @@ export interface TestDetail2 {
   time_limit_in_seconds: number;
   start_date: string;
   due_date: string;
+  created_at: string;
 }

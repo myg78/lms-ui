@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TestDetail} from '../../shared/models/test-detail.model';
-import {TestHistoryService} from '../../shared/services/test-history.service';
 import {TestDetailService} from '../../shared/services/test-detail.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-test-detail',
@@ -11,13 +11,17 @@ import {TestDetailService} from '../../shared/services/test-detail.service';
 export class TestDetailComponent implements OnInit {
 
   testDetail: TestDetail;
+  dateFormat = 'EEEE, d MMMM y, h:mm a zzzz';
 
   constructor(
+    private route: ActivatedRoute,
     private testDetailService: TestDetailService,
   ) {}
 
   ngOnInit(): void {
-    this.getTestDetail(1);
+    const id = +this.route.snapshot.paramMap.get('id');
+    console.log('id: ' + id);
+    this.getTestDetail(id);
   }
 
   getTestDetail(id: number): void {

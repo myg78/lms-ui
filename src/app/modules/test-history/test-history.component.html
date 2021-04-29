@@ -27,11 +27,12 @@
                   <td class="text-center">{{test.attempt_number}}</td>
                   <td class="cell-ta">{{test.test.title}}</td>
                   <td class="text-center">{{test.test.type | titlecase}}</td>
-                  <td class="text-center">{{test.test.due_date | date:'medium'}}</td>
-                  <td class="text-center">{{test.submission_date | date:'medium'}}</td>
-                  <td class="text-center"><a href="#" routerLink="/test-detail">View</a></td>
+                  <td class="text-center">{{test.test.due_date | date:dateFormat}}</td>
+                  <td class="text-center">{{test.submission_date | date: dateFormat}}</td>
+                  <td class="text-center"><a href="#" routerLink="/test-detail/{{test.id}}">View</a></td>
                 </tr>
                 </tbody>
+
               </table>
             </div>
           </div>

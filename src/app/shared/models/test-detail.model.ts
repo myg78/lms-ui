@@ -1,11 +1,14 @@
+import {TestDetail2} from './test-detail2.model';
+
 export interface TestDetail {
-   description: string;
-   dueDate: string;
-   timeRemaining: string;
-   submissionStatus: string;
-   submissionDate: string;
-   gradingStatus: string;
-   grade: string;
-   gradedDate: string;
-   gradedBy: string;
+  test: TestDetail2;
+  // timeRemaining: string;
+  attempt_number: number;
+  submission_status: string;
+  submission_date: string;
+  grading_status: string;
+  graded_date: string;
+  graded_by: string;
+  grade_value: number;
+  grade_max_value: number;
 }

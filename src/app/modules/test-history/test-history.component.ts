@@ -11,6 +11,7 @@ import {Observable} from 'rxjs';
 export class TestHistoryComponent implements OnInit {
 
   history$: Observable<TestHistory[]>;
+  dateFormat = 'EEEE, d MMMM y, h:mm a zzzz';
 
   constructor(
     private testHistoryService: TestHistoryService,

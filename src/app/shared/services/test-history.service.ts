@@ -12,9 +12,8 @@ export class TestHistoryService {
   constructor(private http: HttpClient) {}
 
   getTestHistory(): Observable<TestHistory[]> {
-    console.log('getTest');
+    console.log('getTestHistory');
     return this.http.get<any>(this.url);
-    // return of([this.getMockTestHistory(), this.getMockTestHistory()]);
   }
 
   // getMockTestHistory(): TestHistory {
