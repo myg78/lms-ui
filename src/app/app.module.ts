@@ -16,7 +16,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TestInfoComponent} from './modules/test-info/test-info.component';
 import {TestResultComponent} from './modules/test-result/test-result.component';
 import {CountdownModule} from 'ngx-countdown';
-import {TestDetailComponent} from './modules/test-detail/test-detail.component';
+import {SubmissionComponent} from './modules/submission/submission.component';
 import {GradesComponent} from './modules/grades/grades.component';
 import {HttpClientModule} from '@angular/common/http';
 
@@ -29,7 +29,7 @@ import {HttpClientModule} from '@angular/common/http';
     ContentComponent,
     TestHistoryComponent,
     TestInfoComponent,
-    TestDetailComponent,
+    SubmissionComponent,
     TestViewComponent,
     TestResultComponent,
     GradesComponent

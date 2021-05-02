@@ -1,6 +1,6 @@
 import {TestDetail2} from './test-detail2.model';
 
-export interface TestDetail {
+export interface Submission {
   test: TestDetail2;
   // timeRemaining: string;
   attempt_number: number;

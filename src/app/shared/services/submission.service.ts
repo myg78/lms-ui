@@ -1,28 +1,27 @@
 import {Injectable} from '@angular/core';
 
-import {Observable, of} from 'rxjs';
-import {TestDetail} from '../models/test-detail.model';
-import {TestHistory} from '../models/test-history.model';
+import {Observable} from 'rxjs';
+import {Submission} from '../models/submission.model';
 import {HttpClient} from '@angular/common/http';
 
 @Injectable({providedIn: 'root'})
-export class TestDetailService {
+export class SubmissionService {
 
-  private url = 'http://localhost:8000/api/student-tests/';
+  private url = 'http://localhost:8000/api/submissions/';
 
   constructor(private http: HttpClient) {}
 
-  getTestDetail(id: number): Observable<TestDetail> {
+  getTestDetail(id: number): Observable<Submission> {
     console.log('getTestHistory');
     return this.http.get<any>(this.url + id);
   }
 
-  // getTestDetail(id: number): Observable<TestDetail> {
+  // getTestDetail(id: number): Observable<Submission> {
   //   console.log('getTestDetail');
   //   return of(this.getMockTestDetail());
   // }
   //
-  // getMockTestDetail(): TestDetail {
+  // getMockTestDetail(): Submission {
   //   return {
   //     description: 'Test Description. For your first assignment, I prepared these items for you to ponder. If you are about to answer this activity, I assume that you’re already done reading the material I uploaded under Modules 1 and 2. How was it going so far? Another piece of a cake, right? Please answer the following, briefly and straightforward. This assignment should be done individually.',
   //     dueDate: 'Friday, 12 March 2021, 11:59 PM',

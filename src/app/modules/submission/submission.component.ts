@@ -1,21 +1,21 @@
 import {Component, OnInit} from '@angular/core';
-import {TestDetail} from '../../shared/models/test-detail.model';
-import {TestDetailService} from '../../shared/services/test-detail.service';
+import {Submission} from '../../shared/models/submission.model';
+import {SubmissionService} from '../../shared/services/submission.service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
-  selector: 'app-test-detail',
-  templateUrl: './test-detail.component.html',
-  styleUrls: ['./test-detail.component.css']
+  selector: 'app-submission',
+  templateUrl: './submission.component.html',
+  styleUrls: ['./submission.component.css']
 })
-export class TestDetailComponent implements OnInit {
+export class SubmissionComponent implements OnInit {
 
-  testDetail: TestDetail;
+  testDetail: Submission;
   dateFormat = 'EEEE, d MMMM y, h:mm a zzzz';
 
   constructor(
     private route: ActivatedRoute,
-    private testDetailService: TestDetailService,
+    private testDetailService: SubmissionService,
   ) {}
 
   ngOnInit(): void {

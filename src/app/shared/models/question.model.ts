@@ -1,7 +1,7 @@
 import {Option} from './option.model';
 
 export interface Question {
-   id: number;
+   // id: number;
    number: number;
    label: string;
    type: string;

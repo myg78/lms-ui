@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {TestService} from '../../shared/services/test.service';
 import {Test} from '../../shared/models/test.model';
@@ -16,6 +16,7 @@ export class TestViewComponent implements OnInit, AfterViewInit {
   selectionsFormGroup: FormGroup;
 
   test: Test;
+  submission: any;
 
   @ViewChild('stepper') stepper: MatStepper;
 
@@ -23,29 +24,24 @@ export class TestViewComponent implements OnInit, AfterViewInit {
     private formBuilder: FormBuilder,
     private testService: TestService,
     private router: Router,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit() {
     console.log('init test');
-    // this.firstFormGroup = this._formBuilder.group({
-    //   firstCtrl: ['', Validators.required],
-    //   radioCtrl: ['', Validators.required],
-    // });
-    // this.secondFormGroup = this._formBuilder.group({
-    //   secondCtrl: ['', Validators.required]
-    // });
 
     this.selectionsFormGroup = this.formBuilder.group({
       categories: this.formBuilder.array([])
     });
 
-    this.testService.getTest(1).subscribe(test => {
-      test.questions.forEach((question, i) => {
+    this.testService.getSubmission(1).subscribe(submission => {
+      submission.test.content.forEach((question, i) => {
         console.log('question: ' + question.label);
-        this.categories.push(this.createCategorySelection(question.id.toString(), question.label, question.options, i));
+        this.categories.push(this.createCategorySelection(question.number.toString(), question.label, question.options, i));
+        this.test = submission.test;
       });
-      this.test = test;
+      console.log('test: ' + this.test.title);
     });
     console.log('init end');
   }
@@ -58,8 +54,8 @@ export class TestViewComponent implements OnInit, AfterViewInit {
     return this.selectionsFormGroup.get('categories') as FormArray;
   }
 
-  createCategorySelection(tag: string, title: string, items, id: number): FormGroup {
-    console.log('tag: ' + tag);
+  createCategorySelection(questionNumber: string, title: string, items, id: number): FormGroup {
+    console.log('tag: ' + questionNumber);
     console.log('title: ' + title);
     console.log('items: ' + items);
     console.log('id: ' + id);
@@ -69,7 +65,7 @@ export class TestViewComponent implements OnInit, AfterViewInit {
       // id: [id],
       // selectedValue: [undefined, Validators.required],
       // options: this._formBuilder.array([])
-      id: [tag],
+      id: [questionNumber],
       label: [title],
       selectedValue: [undefined, Validators.required],
       options: this.formBuilder.array([])
@@ -114,7 +110,7 @@ export class TestViewComponent implements OnInit, AfterViewInit {
   onSubmit() {
     const form = JSON.stringify(this.selectionsFormGroup.getRawValue());
     console.log('submit: ' + form);
-    this.router.navigate(['/test-result', { id: 'test' }]);
+    this.router.navigate(['/test-result', {id: 'test'}]);
   }
 
   openSnackBar(message: string, action: string) {

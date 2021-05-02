@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {TestDetailService} from '../../shared/services/test-detail.service';
+import {SubmissionService} from '../../shared/services/submission.service';
 
 export interface PeriodicElement {
   name: string;
@@ -28,13 +28,13 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class GradesComponent implements OnInit {
 
-  // testDetail: TestDetail;
+  // testDetail: Submission;
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
 
   constructor(
-    private testDetailService: TestDetailService,
+    private testDetailService: SubmissionService,
   ) {}
 
   ngOnInit(): void {

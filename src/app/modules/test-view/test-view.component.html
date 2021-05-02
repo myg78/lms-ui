@@ -3,7 +3,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-lg-12">
-        <h2 class="st_title"><i class="uil uil-book-alt"></i>{{test.title}}</h2>
+        <h2 class="st_title"><i class="uil uil-book-alt"></i>{{test?.title}}</h2>
         <!--          <div class="p-md-4">{{test.description}}</div>-->
       </div>
     </div>
@@ -39,7 +39,7 @@
                   </mat-step>
                 </ng-container>
 
-                <mat-step>
+                <mat-step *ngIf="test">
                   <ng-template matStepLabel>End</ng-template>
                   <p>This is the end of the exam. Feel free to review your answers and submit when done.</p>
                   <div class="example-button-row">
@@ -58,20 +58,19 @@
                 <ul class="test_timer_left">
                   <li>
                     <div class="timer_time">
-                      <h4>{{test.questions.length}}</h4>
+                      <h4>{{test?.content?.length}}</h4>
                       <p>Questions</p>
                     </div>
                   </li>
                   <li>
-                    <div class="timer_time">
-<!--                      <h4 id="timer">{{test.durationInSeconds}}</h4>-->
-                      <h4 id="timer"><countdown [config]="{ leftTime: test.durationInSeconds, format: 'm:s', notify: [ 5, 30, 60, 88, 90 ] }"
-                                                (notify)="onNotify($event)"
-                                                (start)="onStart($event)"
-                                                (finished)="onFinish($event)">
-                        $!m!:$!s!</countdown></h4>
-                      <p>Time remaining</p>
-                    </div>
+                    <div class="timer_time" *ngIf="test">
+                    <h4 id="timer"><countdown [config]="{ leftTime: test?.time_limit_in_seconds, format: 'm:s', notify: [ 5, 30, 60, 88, 90 ] }"
+                                              (notify)="onNotify($event)"
+                                              (start)="onStart($event)"
+                                              (finished)="onFinish($event)">
+                      $!m!:$!s!</countdown></h4>
+                    <p>Time remaining</p>
+              </div>
                   </li>
                 </ul>
               </div>

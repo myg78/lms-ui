@@ -1,11 +1,12 @@
 import {Question} from './question.model';
 
 export interface Test {
-   title: string;
-   description: string;
-   dueDate: string;
-   openDate: string;
-   closeDate: string;
-   durationInSeconds: number;
-   questions: Question[];
+  title: string;
+  description: string;
+  type: string;
+  time_limit_in_seconds: number;
+  start_date: string;
+  due_date: string;
+  // closeDate: string;
+  content: Question[];
 }
