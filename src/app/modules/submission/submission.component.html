@@ -16,7 +16,10 @@
           </div>
           <div class="statement_content">
             <p class="tt-body">{{testDetail?.test.description}}</p>
-            <a href="#" class="apply_instructor_btn" routerLink="/test">Start Test</a>
+            <div *ngIf="testDetail?.attempt_number == 0; else testDone">
+              <a href="#" class="apply_instructor_btn" routerLink="/test">Start Test</a>
+            </div>
+            <ng-template #testDone><span class="apply_instructor_btn_disabled">Done</span></ng-template>
           </div>
         </div>
       </div>
@@ -44,18 +47,18 @@
               </div>
 
               <div class="allvperf">
-                <div class="crse-perf-left">Graded On</div>
+                <div class="crse-perf-left">Graded By</div>
                 <div class="crse-perf-right">
-                  <div class="crse-perf-right">
-                    <div *ngIf="testDetail?.graded_date; else elseBlock">{{testDetail.graded_date}}</div>
-                  </div>
+                  <div *ngIf="testDetail?.graded_by; else elseBlock">{{testDetail.graded_by}}</div>
                 </div>
               </div>
 
               <div class="allvperf">
-                <div class="crse-perf-left">Graded by</div>
+                <div class="crse-perf-left">Graded On</div>
                 <div class="crse-perf-right">
-                  <div *ngIf="testDetail?.graded_by; else elseBlock">{{testDetail.graded_by}}</div>
+                  <div class="crse-perf-right">
+                    <div *ngIf="testDetail?.graded_date; else elseBlock">{{testDetail.graded_date | date:dateFormat}}</div>
+                  </div>
                 </div>
               </div>
 
@@ -78,24 +81,36 @@
                 <div class="crse-perf-right"><span class="per_text2">{{testDetail?.test.due_date | date:dateFormat}}</span></div>
               </div>
 
-              <div class="allvperf">
-                <div class="crse-perf-left">Time remaining</div>
-                <div class="crse-perf-right">{{testDetail?.timeRemaining}}</div>
-              </div>
+<!--              <div class="allvperf">-->
+<!--                <div class="crse-perf-left">Time remaining</div>-->
+<!--                <div class="crse-perf-right">{{testDetail?.timeRemaining}}</div>-->
+<!--              </div>-->
 
               <div class="allvperf">
                 <div class="crse-perf-left">Attempt</div>
-                <div class="crse-perf-right"># {{testDetail?.attempt_number}}</div>
+                <div class="crse-perf-right">
+                  <div *ngIf="testDetail?.attempt_number > 0; else elseBlock">
+                    # {{testDetail?.attempt_number}}
+                  </div>
+                </div>
               </div>
 
               <div class="allvperf">
                 <div class="crse-perf-left">Submission Status</div>
-                <div class="crse-perf-right">{{testDetail?.submission_status}}</div>
+                <div class="crse-perf-right">
+                  <div *ngIf="testDetail?.submission_status; else elseBlock">
+                    {{testDetail?.submission_status}}
+                  </div>
+                </div>
               </div>
 
               <div class="allvperf">
                 <div class="crse-perf-left">Submission Date</div>
-                <div class="crse-perf-right">{{testDetail?.submission_date | date:dateFormat}}</div>
+                <div class="crse-perf-right">
+                  <div *ngIf="testDetail?.submission_date; else elseBlock">
+                    {{testDetail?.submission_date | date:dateFormat}}
+                  </div>
+                </div>
               </div>
 
             </div>

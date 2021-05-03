@@ -1,0 +1,82 @@
+<!-- Body Start -->
+<div class="sa4d25">
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2 class="st_title"><i class="uil uil-book-alt"></i>Student Dashboard</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="_14d25">
+          <div class="row">
+
+            <div class="col-md-4">
+              <div class="card_dash">
+                <div class="card_dash_left">
+                  <h5>Total Tests Completed</h5>
+                  <h2>{{ (history$ | async)?.length}}</h2>
+                </div>
+                <div class="card_dash_right">
+                  <img src="../../../assets/images/dashboard/graduation-cap.svg" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card_dash">
+                <div class="card_dash_left">
+                  <h5>Total Course Tests</h5>
+                  <h2>{{ (tests$ | async)?.length}}</h2>
+                </div>
+                <div class="card_dash_right">
+                  <img src="../../../assets/images/dashboard/online-course.svg" alt="">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-12 mt-40 pl-4">
+              <h4 class="item_title">Course Tests</h4>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-md-4" *ngFor="let test of tests$ | async">
+              <div class="fcrse_1 mt-30">
+                <a href="#" class="fcrse_img" routerLink="/submission/test/{{test.id}}">
+                  <img src="../../../assets/images/courses/add_img.jpg" alt="">
+                  <div class="course-overlay">
+                    <div class="badge_seller">{{test.type | titlecase}}</div>
+                  </div>
+                </a>
+                <div class="fcrse_content">
+                  <a href="#" class="crse14s" routerLink="/submission/test/{{test.id}}">{{test.title}}</a>
+                  <span class="crse-cate">{{ (test.description.length>130)? (test.description | slice:0:130)+'...':(test.description) }}</span>
+                  <div class="auth1lnkprce">
+                    <p class="cr1fot">Opens on {{test.start_date | date:simpleDateFormat}}</p>
+                    <p class="cr1fot">Due on {{test.due_date | date:simpleDateFormat}}</p>
+                  </div>
+                  <div class="auth1lnkprce">
+                    <a href="#" class="cr1fot50" routerLink="/submission/test/{{test.id}}">View Test</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--            <div class="col-md-12">-->
+            <!--              <div class="main-loader mt-50">-->
+            <!--                <div class="spinner">-->
+            <!--                  <div class="bounce1"></div>-->
+            <!--                  <div class="bounce2"></div>-->
+            <!--                  <div class="bounce3"></div>-->
+            <!--                </div>-->
+            <!--              </div>-->
+            <!--            </div>-->
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Body End -->

@@ -1,10 +1,12 @@
 import {TestDetail2} from './test-detail2.model';
 
 export interface Submission {
+  id: number;
   test: TestDetail2;
   // timeRemaining: string;
   attempt_number: number;
   submission_status: string;
+  start_date: string;
   submission_date: string;
   grading_status: string;
   graded_date: string;

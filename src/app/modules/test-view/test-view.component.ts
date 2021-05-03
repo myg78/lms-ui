@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {TestService} from '../../shared/services/test.service';
 import {Test} from '../../shared/models/test.model';
@@ -24,8 +24,7 @@ export class TestViewComponent implements OnInit, AfterViewInit {
     private formBuilder: FormBuilder,
     private testService: TestService,
     private router: Router,
-    private snackBar: MatSnackBar,
-    private cdr: ChangeDetectorRef) {
+    private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {

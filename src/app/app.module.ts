@@ -19,6 +19,8 @@ import {CountdownModule} from 'ngx-countdown';
 import {SubmissionComponent} from './modules/submission/submission.component';
 import {GradesComponent} from './modules/grades/grades.component';
 import {HttpClientModule} from '@angular/common/http';
+import {TestScheduleComponent} from './modules/test-schedule/test-schedule.component';
+import {DashboardComponent} from './modules/dashboard/dashboard.component';
 
 
 @NgModule({
@@ -27,12 +29,14 @@ import {HttpClientModule} from '@angular/common/http';
     HeaderComponent,
     SidebarComponent,
     ContentComponent,
+    TestScheduleComponent,
     TestHistoryComponent,
     TestInfoComponent,
     SubmissionComponent,
     TestViewComponent,
     TestResultComponent,
-    GradesComponent
+    GradesComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

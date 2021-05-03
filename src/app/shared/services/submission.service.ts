@@ -9,11 +9,12 @@ export class SubmissionService {
 
   private url = 'http://localhost:8000/api/submissions/';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
-  getTestDetail(id: number): Observable<Submission> {
-    console.log('getTestHistory');
-    return this.http.get<any>(this.url + id);
+  getSubmission(sid: number): Observable<Submission> {
+    console.log('getSubmission');
+    return this.http.get<any>(this.url + sid);
   }
 
   // getTestDetail(id: number): Observable<Submission> {

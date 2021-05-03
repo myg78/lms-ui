@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import {TestDetail2} from '../models/test-detail2.model';
 
 @Injectable({providedIn: 'root'})
 export class TestService {
@@ -24,6 +25,7 @@ export class TestService {
   // }
 
   private url = 'http://localhost:8000/api/submissions/1';
+  private url2 = 'http://localhost:8000/api/tests/';
 
   constructor(private http: HttpClient) {
   }
@@ -31,6 +33,11 @@ export class TestService {
   getSubmission(id: number): Observable<any> {
     console.log('getSubmission');
     return this.http.get<any>(this.url);
+  }
+
+  getTest(tid: number): Observable<TestDetail2> {
+    console.log('getTest');
+    return this.http.get<any>(this.url2 + tid);
   }
 
   // getTest0(id: number): Observable<string[]> {

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {TestHistory} from '../../shared/models/test-history.model';
 import {TestHistoryService} from '../../shared/services/test-history.service';
 import {Observable} from 'rxjs';
+import {Submission} from '../../shared/models/submission.model';
 
 @Component({
   selector: 'app-test-history',
@@ -10,7 +10,7 @@ import {Observable} from 'rxjs';
 })
 export class TestHistoryComponent implements OnInit {
 
-  history$: Observable<TestHistory[]>;
+  history$: Observable<Submission[]>;
   dateFormat = 'EEEE, d MMMM y, h:mm a zzzz';
 
   constructor(
@@ -22,7 +22,7 @@ export class TestHistoryComponent implements OnInit {
   }
 
   getTestHistory(): void {
-    this.history$ = this.testHistoryService.getTestHistory();
+    this.history$ = this.testHistoryService.getTestHistory(1); // TODO param
   }
 
 }

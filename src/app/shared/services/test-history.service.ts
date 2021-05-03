@@ -1,19 +1,26 @@
 import {Injectable} from '@angular/core';
 
-import {Observable, of} from 'rxjs';
-import {TestHistory} from '../models/test-history.model';
+import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import {Submission} from '../models/submission.model';
 
 @Injectable({providedIn: 'root'})
 export class TestHistoryService {
 
-  private url = 'http://localhost:8000/api/students/1/tests';
+  private baseUrl = 'http://localhost:8000/api/students';
 
   constructor(private http: HttpClient) {}
 
-  getTestHistory(): Observable<TestHistory[]> {
+  getTestHistory(uid: number): Observable<Submission[]> {
     console.log('getTestHistory');
-    return this.http.get<any>(this.url);
+    const url = `${this.baseUrl}/${uid}/tests`;
+    return this.http.get<any>(url);
+  }
+
+  getSubmissionForTest(uid: number, tid: number): Observable<Submission> {
+    console.log('getTestHistory');
+    const url = `${this.baseUrl}/${uid}/tests/${tid}`;
+    return this.http.get<any>(url);
   }
 
   // getMockTestHistory(): TestHistory {
