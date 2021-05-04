@@ -1,8 +1,8 @@
-import {TestDetail2} from './test-detail2.model';
+import {TestDetailBasic} from './test-detail-basic.model';
 
 export interface Submission {
   id: number;
-  test: TestDetail2;
+  test: TestDetailBasic;
   // timeRemaining: string;
   attempt_number: number;
   submission_status: string;

@@ -28,7 +28,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class GradesComponent implements OnInit {
 
-  // testDetail: Submission;
+  // submission: Submission;
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
@@ -43,7 +43,7 @@ export class GradesComponent implements OnInit {
 
   // getTestDetail(id: number): void {
   //   //   this.testDetailService.getTestDetail(id)
-  //   //     .subscribe(testDetail => this.testDetail = testDetail);
+  //   //     .subscribe(submission => this.submission = submission);
   //   // }
 
 

@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-lg-12">
         <h2 class="st_title"><i class="uil uil-file-alt"></i>
-          {{testDetail?.test.title}}
+          {{submission?.test.title}}
         </h2>
       </div>
     </div>
@@ -15,11 +15,16 @@
             <h2>Description</h2>
           </div>
           <div class="statement_content">
-            <p class="tt-body">{{testDetail?.test.description}}</p>
-            <div *ngIf="testDetail?.attempt_number == 0; else testDone">
-              <a href="#" class="apply_instructor_btn" routerLink="/test">Start Test</a>
+            <p class="tt-body">{{submission?.test.description}}</p>
+            <div *ngIf="showStart">
+              <button type="button" mat-raised-button color="warn" (click)="startTest()">Start Test</button>
             </div>
-            <ng-template #testDone><span class="apply_instructor_btn_disabled">Done</span></ng-template>
+            <div *ngIf="submission?.submission_status == 'Started'">
+              <button type="button" mat-raised-button color="warn" (click)="continueTest()">Continue Test</button>
+            </div>
+            <div *ngIf="submission?.submission_status == 'Submitted'">
+              <button mat-raised-button disabled>Done</button>
+            </div>
           </div>
         </div>
       </div>
@@ -34,7 +39,7 @@
               <div class="allvperf">
                 <div class="crse-perf-left">Grading Status</div>
                 <div class="crse-perf-right">
-                  <div *ngIf="testDetail?.grading_status; else elseBlock">{{testDetail.grading_status}}</div>
+                  <div *ngIf="submission?.grading_status; else elseBlock">{{submission.grading_status}}</div>
                   <ng-template #elseBlock>Pending</ng-template>
                 </div>
               </div>
@@ -42,14 +47,15 @@
               <div class="allvperf">
                 <div class="crse-perf-left">Grade</div>
                 <div class="crse-perf-right">
-                  <div *ngIf="testDetail?.grade_value; else elseBlock"><span class="per_text2">{{testDetail.grade_value}} / {{testDetail.grade_max_value}}</span></div>
+                  <div *ngIf="submission?.grade_value; else elseBlock"><span
+                    class="per_text2">{{submission.grade_value}} / {{submission.grade_max_value}}</span></div>
                 </div>
               </div>
 
               <div class="allvperf">
                 <div class="crse-perf-left">Graded By</div>
                 <div class="crse-perf-right">
-                  <div *ngIf="testDetail?.graded_by; else elseBlock">{{testDetail.graded_by}}</div>
+                  <div *ngIf="submission?.graded_by; else elseBlock">{{submission.graded_by}}</div>
                 </div>
               </div>
 
@@ -57,7 +63,8 @@
                 <div class="crse-perf-left">Graded On</div>
                 <div class="crse-perf-right">
                   <div class="crse-perf-right">
-                    <div *ngIf="testDetail?.graded_date; else elseBlock">{{testDetail.graded_date | date:dateFormat}}</div>
+                    <div
+                      *ngIf="submission?.graded_date; else elseBlock">{{submission.graded_date | date:dateFormat}}</div>
                   </div>
                 </div>
               </div>
@@ -78,19 +85,20 @@
 
               <div class="allvperf">
                 <div class="crse-perf-left"><span class="analyics_pr">Due date</span></div>
-                <div class="crse-perf-right"><span class="per_text2">{{testDetail?.test.due_date | date:dateFormat}}</span></div>
+                <div class="crse-perf-right"><span
+                  class="per_text2">{{submission?.test.due_date | date:dateFormat}}</span></div>
               </div>
 
-<!--              <div class="allvperf">-->
-<!--                <div class="crse-perf-left">Time remaining</div>-->
-<!--                <div class="crse-perf-right">{{testDetail?.timeRemaining}}</div>-->
-<!--              </div>-->
+              <!--              <div class="allvperf">-->
+              <!--                <div class="crse-perf-left">Time remaining</div>-->
+              <!--                <div class="crse-perf-right">{{submission?.timeRemaining}}</div>-->
+              <!--              </div>-->
 
               <div class="allvperf">
                 <div class="crse-perf-left">Attempt</div>
                 <div class="crse-perf-right">
-                  <div *ngIf="testDetail?.attempt_number > 0; else elseBlock">
-                    # {{testDetail?.attempt_number}}
+                  <div *ngIf="submission?.attempt_number > 0; else elseBlock">
+                    # {{submission?.attempt_number}}
                   </div>
                 </div>
               </div>
@@ -98,8 +106,8 @@
               <div class="allvperf">
                 <div class="crse-perf-left">Submission Status</div>
                 <div class="crse-perf-right">
-                  <div *ngIf="testDetail?.submission_status; else elseBlock">
-                    {{testDetail?.submission_status}}
+                  <div *ngIf="submission?.submission_status; else elseBlock">
+                    {{submission?.submission_status}}
                   </div>
                 </div>
               </div>
@@ -107,8 +115,8 @@
               <div class="allvperf">
                 <div class="crse-perf-left">Submission Date</div>
                 <div class="crse-perf-right">
-                  <div *ngIf="testDetail?.submission_date; else elseBlock">
-                    {{testDetail?.submission_date | date:dateFormat}}
+                  <div *ngIf="submission?.submission_date; else elseBlock">
+                    {{submission?.submission_date | date:dateFormat}}
                   </div>
                 </div>
               </div>

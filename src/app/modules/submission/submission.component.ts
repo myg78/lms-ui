@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Submission} from '../../shared/models/submission.model';
 import {SubmissionService} from '../../shared/services/submission.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {TestService} from '../../shared/services/test.service';
 import {forkJoin} from 'rxjs';
 import {TestHistoryService} from '../../shared/services/test-history.service';
+import {mergeMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-submission',
@@ -13,11 +14,13 @@ import {TestHistoryService} from '../../shared/services/test-history.service';
 })
 export class SubmissionComponent implements OnInit {
 
-  testDetail: Submission;
+  submission: Submission;
   dateFormat = 'EEEE, d MMMM y, h:mm a zzzz';
+  showStart = false;
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private submissionService: SubmissionService,
     private testService: TestService,
     private testHistoryService: TestHistoryService,
@@ -27,8 +30,8 @@ export class SubmissionComponent implements OnInit {
   ngOnInit(): void {
     const sid = +this.route.snapshot.paramMap.get('sid'); // submission id
     const tid = +this.route.snapshot.paramMap.get('tid'); // test id
-    console.log('sid: ' + sid);
-    console.log('tid: ' + tid);
+    // console.log('submission id: ' + sid);
+    // console.log('test id: ' + tid);
     const uid = 1; // TODO param
     if (sid === 0) {
       this.getTest(uid, tid);
@@ -39,26 +42,10 @@ export class SubmissionComponent implements OnInit {
 
   getSubmission(sid: number): void {
     this.submissionService.getSubmission(sid)
-      .subscribe(testDetail => this.testDetail = testDetail);
+      .subscribe(testDetail => this.submission = testDetail);
   }
 
   getTest(uid: number, tid: number): void {
-    // this.testService.getTest(tid)
-    //   .subscribe(test => {
-    //     this.testDetail = {
-    //       test: test,
-    //       attempt_number: 0,
-    //       submission_status: '',
-    //       submission_date: '',
-    //       grading_status: '',
-    //       graded_date: '',
-    //       graded_by: '',
-    //       grade_value: 0,
-    //       grade_max_value: 0,
-    //     };
-    //     return this.testDetail;
-    //   });
-
     forkJoin(
       this.testService.getTest(tid), this.testHistoryService.getSubmissionForTest(uid, tid),
     ).subscribe((res) => {
@@ -68,7 +55,7 @@ export class SubmissionComponent implements OnInit {
   }
 
   setTestInfo(test) {
-    this.testDetail = {
+    this.submission = {
       id: 0,
       test: test,
       attempt_number: 0,
@@ -84,22 +71,42 @@ export class SubmissionComponent implements OnInit {
   }
 
   setSubmissionInfo(submission: Submission) {
-    console.log('sub: ' + submission.attempt_number);
-    if (submission) {
-      console.log('hello');
-    }
+    console.log('submission id: ' + submission.id);
     if (submission.id) {
-      console.log('there');
-      this.testDetail.attempt_number = submission.attempt_number;
-      this.testDetail.submission_status = submission.submission_status;
-      this.testDetail.start_date = submission.start_date;
-      this.testDetail.submission_date = submission.submission_date;
-      this.testDetail.grading_status = submission.grading_status;
-      this.testDetail.graded_date = submission.graded_date;
-      this.testDetail.graded_by = submission.graded_by;
-      this.testDetail.grade_value = submission.grade_value;
-      this.testDetail.grade_max_value = submission.grade_max_value;
+      this.submissionService.getSubmission(submission.id).subscribe(response => {
+        this.submission.id = response.id;
+        this.submission.attempt_number = response.attempt_number;
+        this.submission.submission_status = response.submission_status;
+        this.submission.start_date = response.start_date;
+        this.submission.submission_date = response.submission_date;
+        this.submission.grading_status = response.grading_status;
+        this.submission.graded_date = response.graded_date;
+        this.submission.graded_by = response.graded_by;
+        this.submission.grade_value = response.grade_value;
+        this.submission.grade_max_value = response.grade_max_value;
+      });
+    } else {
+      this.showStart = true;
     }
+  }
+
+  startTest() {
+    console.log('start test');
+    this.submissionService.startSubmission(1, this.submission.test.id)
+      .pipe(
+        mergeMap((res1) => this.submissionService.getSubmission(res1['id'])),
+      ).subscribe((res2) => {
+      console.log('started submission: ' + res2['id']);
+      this.router.navigate(['/test', {sid: res2['id']}]);
+    });
+  }
+
+  continueTest() {
+    console.log('continue test: ' + this.submission.id);
+    this.router.navigate(['/test', {sid: this.submission.id}]);
+    // this.submissionService.getSubmission(this.submission.id).subscribe(response => {
+    //   this.router.navigate(['/test', {sid: response['id']}]);
+    // });
   }
 
 }

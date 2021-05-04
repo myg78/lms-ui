@@ -9,7 +9,8 @@ export class TestHistoryService {
 
   private baseUrl = 'http://localhost:8000/api/students';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   getTestHistory(uid: number): Observable<Submission[]> {
     console.log('getTestHistory');
@@ -22,15 +23,5 @@ export class TestHistoryService {
     const url = `${this.baseUrl}/${uid}/tests/${tid}`;
     return this.http.get<any>(url);
   }
-
-  // getMockTestHistory(): TestHistory {
-  //   return {
-  //     attemptNo: '1',
-  //     title: 'Exam 1',
-  //     type: 'Exam',
-  //     dueDate: 'Friday, 12 March 2021, 11:59 PM',
-  //     submissionDate: 'Friday, 12 March 2021, 11:59 PM'
-  //   };
-  // }
 
 }

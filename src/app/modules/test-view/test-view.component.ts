@@ -3,7 +3,7 @@ import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {TestService} from '../../shared/services/test.service';
 import {Test} from '../../shared/models/test.model';
 import {MatSnackBar, MatStepper} from '@angular/material';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-test-view',
@@ -21,6 +21,7 @@ export class TestViewComponent implements OnInit, AfterViewInit {
   @ViewChild('stepper') stepper: MatStepper;
 
   constructor(
+    private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private testService: TestService,
     private router: Router,
@@ -29,17 +30,18 @@ export class TestViewComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     console.log('init test');
-
+    const sid = +this.route.snapshot.paramMap.get('sid'); // submission id
     this.selectionsFormGroup = this.formBuilder.group({
       categories: this.formBuilder.array([])
     });
 
-    this.testService.getSubmission(1).subscribe(submission => {
+    this.testService.getTestContent(sid).subscribe(submission => {
       submission.test.content.forEach((question, i) => {
         console.log('question: ' + question.label);
         this.categories.push(this.createCategorySelection(question.number.toString(), question.label, question.options, i));
-        this.test = submission.test;
       });
+      this.test = submission.test;
+      this.submission = submission;
       console.log('test: ' + this.test.title);
     });
     console.log('init end');
@@ -109,7 +111,11 @@ export class TestViewComponent implements OnInit, AfterViewInit {
   onSubmit() {
     const form = JSON.stringify(this.selectionsFormGroup.getRawValue());
     console.log('submit: ' + form);
-    this.router.navigate(['/test-result', {id: 'test'}]);
+
+    this.testService.submitTest(this.submission.id).subscribe(response => {
+      console.log('submitted: ' + response['id']);
+      this.router.navigate(['/test-result', {id: 'test'}]);
+    });
   }
 
   openSnackBar(message: string, action: string) {

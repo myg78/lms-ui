@@ -11,7 +11,15 @@ import {TestViewComponent} from './modules/test-view/test-view.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatButtonModule, MatInputModule, MatRadioModule, MatSnackBarModule, MatTableModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatIconModule,
+  MatInputModule,
+  MatRadioModule,
+  MatSnackBarModule,
+  MatTableModule,
+  MatTooltipModule
+} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TestInfoComponent} from './modules/test-info/test-info.component';
 import {TestResultComponent} from './modules/test-result/test-result.component';
@@ -52,7 +60,9 @@ import {DashboardComponent} from './modules/dashboard/dashboard.component';
     MatSnackBarModule,
     MatTableModule,
     CountdownModule,
-    HttpClientModule
+    HttpClientModule,
+    MatIconModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,7 +7,8 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12">
+
+      <div class="col-md-12" *ngIf="(submissions | async)?.length > 0">
         <div class="my_courses_tabs">
           <div>
             <div class="table-responsive">
@@ -20,16 +21,21 @@
                   <th class="text-center" scope="col">Due Date</th>
                   <th class="text-center" scope="col">Test Date</th>
                   <th class="text-center" scope="col">Results</th>
+                  <th class="text-center" scope="col">Controls</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let test of history$ | async">
-                  <td class="text-center">{{test.attempt_number}}</td>
-                  <td class="cell-ta">{{test.test.title}}</td>
-                  <td class="text-center">{{test.test.type | titlecase}}</td>
-                  <td class="text-center">{{test.test.due_date | date:dateFormat}}</td>
-                  <td class="text-center">{{test.submission_date | date: dateFormat}}</td>
-                  <td class="text-center"><a href="#" routerLink="/submission/{{test.id}}">Review</a></td>
+                <tr *ngFor="let submission of submissions | async">
+                  <td class="text-center">{{submission.attempt_number}}</td>
+                  <td class="cell-ta">{{submission.test.title}}</td>
+                  <td class="text-center">{{submission.test.type | titlecase}}</td>
+                  <td class="text-center">{{submission.test.due_date | date:dateFormat}}</td>
+                  <td class="text-center">{{submission.submission_date | date: dateFormat}}</td>
+                  <td class="text-center"><a href="#" routerLink="/submission/{{submission.id}}">Review</a></td>
+                  <td class="text-center">
+                    <span title="Delete" class="gray-s pointer" matTooltip="Dev demo only"
+                          (click)="deleteSubmission(submission.id)"><i class="uil uil-trash-alt"></i></span>
+                  </td>
                 </tr>
                 </tbody>
 
@@ -38,6 +44,16 @@
           </div>
         </div>
       </div>
+
+      <div class="col-md-12" *ngIf="(submissions | async)?.length === 0">
+        <div class="card_dash1">
+          <div class="card_dash_left1">
+            <i class="uil uil-award"></i>
+            <h1>No Submissions Found</h1>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
