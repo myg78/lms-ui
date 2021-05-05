@@ -32,13 +32,13 @@ export class TestViewComponent implements OnInit, AfterViewInit {
     console.log('init test');
     const sid = +this.route.snapshot.paramMap.get('sid'); // submission id
     this.selectionsFormGroup = this.formBuilder.group({
-      categories: this.formBuilder.array([])
+      questions: this.formBuilder.array([])
     });
 
     this.testService.getTestContent(sid).subscribe(submission => {
       submission.test.content.forEach((question, i) => {
         console.log('question: ' + question.label);
-        this.categories.push(this.createCategorySelection(question.number.toString(), question.label, question.options, i));
+        this.questions.push(this.createSelection(question.number.toString(), question.label, question.options, i));
       });
       this.test = submission.test;
       this.submission = submission;
@@ -51,41 +51,29 @@ export class TestViewComponent implements OnInit, AfterViewInit {
     this.stepper._getIndicatorType = () => 'number';
   }
 
-  get categories(): FormArray {
-    return this.selectionsFormGroup.get('categories') as FormArray;
+  get questions(): FormArray {
+    return this.selectionsFormGroup.get('questions') as FormArray;
   }
 
-  createCategorySelection(questionNumber: string, title: string, items, id: number): FormGroup {
+  createSelection(questionNumber: string, title: string, items, id: number): FormGroup {
     console.log('tag: ' + questionNumber);
     console.log('title: ' + title);
     console.log('items: ' + items);
     console.log('id: ' + id);
-    const categorySelection = this.formBuilder.group({
-      // tag: [tag],
-      // title: [title],
-      // id: [id],
-      // selectedValue: [undefined, Validators.required],
-      // options: this._formBuilder.array([])
-      id: [questionNumber],
+    const questionSelection = this.formBuilder.group({
+      number: [questionNumber],
       label: [title],
       selectedValue: [undefined, Validators.required],
       options: this.formBuilder.array([])
     });
-    const opts = categorySelection.get('options') as FormArray;
+    const opts = questionSelection.get('options') as FormArray;
     items.forEach((item, i) => {
       opts.push(this.formBuilder.group({
-        // id: [i],
-        // tag: [item.tag],
-        // name: [item.name],
-        // items: [item.items],
         id: [item.id],
         label: [item.label],
       }));
-      // if (item.selected) {
-      //   categorySelection.patchValue({selectedValue: item});
-      // }
     });
-    return categorySelection;
+    return questionSelection;
   }
 
   move(index: number) {
@@ -109,10 +97,10 @@ export class TestViewComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit() {
-    const form = JSON.stringify(this.selectionsFormGroup.getRawValue());
-    console.log('submit: ' + form);
+    const formValue = JSON.stringify(this.selectionsFormGroup.getRawValue());
+    console.log('submit: ' + formValue);
 
-    this.testService.submitTest(this.submission.id).subscribe(response => {
+    this.testService.submitTest(this.submission.id, formValue).subscribe(response => {
       console.log('submitted: ' + response['id']);
       this.router.navigate(['/test-result', {id: 'test'}]);
     });

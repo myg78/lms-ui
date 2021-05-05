@@ -15,22 +15,23 @@
             <div class="col-md-4">
               <div class="card_dash">
                 <div class="card_dash_left">
-                  <h5>Total Tests Completed</h5>
-                  <h2>{{ (history$ | async)?.length}}</h2>
-                </div>
-                <div class="card_dash_right">
-                  <img src="../../../assets/images/dashboard/graduation-cap.svg" alt="">
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card_dash">
-                <div class="card_dash_left">
                   <h5>Total Course Tests</h5>
                   <h2>{{ (tests$ | async)?.length}}</h2>
                 </div>
                 <div class="card_dash_right">
                   <img src="../../../assets/images/dashboard/online-course.svg" alt="">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="card_dash">
+                <div class="card_dash_left">
+                  <h5>Total Tests Completed</h5>
+                  <h2>{{ (history$ | async)?.length}}</h2>
+                </div>
+                <div class="card_dash_right">
+                  <img src="../../../assets/images/dashboard/graduation-cap.svg" alt="">
                 </div>
               </div>
             </div>

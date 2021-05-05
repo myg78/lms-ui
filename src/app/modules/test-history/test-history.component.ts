@@ -13,6 +13,7 @@ export class TestHistoryComponent implements OnInit {
 
   submissions: Observable<Submission[]>;
   dateFormat = 'EEEE, d MMMM y, h:mm a zzzz';
+  showControls = false;
 
   constructor(
     private testHistoryService: TestHistoryService,
@@ -33,6 +34,11 @@ export class TestHistoryComponent implements OnInit {
     this.submissionService.deleteSubmission(sid).subscribe(response => {
       this.getTestHistory();
     });
+  }
+
+  toggleControl() {
+    const current = this.showControls;
+    this.showControls = !current;
   }
 
 }

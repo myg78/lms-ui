@@ -13,13 +13,13 @@
           <div class="col-lg-8 col-md-6 mt-50">
 
             <form (ngSubmit)="onSubmit()" [formGroup]="selectionsFormGroup">
-              <mat-vertical-stepper [linear]="isLinear" formArrayName="categories" #stepper>
+              <mat-vertical-stepper [linear]="isLinear" formArrayName="questions" #stepper>
 
-                <ng-container *ngFor="let category of categories?.controls; let i=index">
-                  <mat-step [formGroupName]="i" [stepControl]="categories?.controls[i]">
+                <ng-container *ngFor="let question of questions?.controls; let i=index">
+                  <mat-step [formGroupName]="i" [stepControl]="questions?.controls[i]">
                     <ng-template matStepLabel>
                       <div class="ques_title">
-                        {{category.value.label}}
+                        {{question.value.label}}
                       </div>
                     </ng-template>
                     <div class="ques_item">
@@ -27,7 +27,7 @@
                         aria-labelledby="example-radio-group-label"
                         class="example-radio-group"
                         formControlName="selectedValue">
-                        <mat-radio-button class="example-radio-button" [value]="option" *ngFor="let option of category?.value.options; let j=index">
+                        <mat-radio-button class="example-radio-button" [value]="option" *ngFor="let option of question?.value.options; let j=index">
                           {{option.label}}
                         </mat-radio-button>
                       </mat-radio-group>

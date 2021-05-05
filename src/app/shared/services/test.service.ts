@@ -24,11 +24,12 @@ export class TestService {
     return this.http.get<any>(url);
   }
 
-  submitTest(sid: number): Observable<any> {
-    console.log('submitTestContent');
+  submitTest(sid: number, formValue: string): Observable<any> {
+    console.log('submitTest');
     const url = `${this.baseUrl}/${sid}/submit`;
     const form = new FormData();
-    return this.http.put(url, form);
+    form.append('form_value', formValue);
+    return this.http.post(url, form);
   }
 
 }

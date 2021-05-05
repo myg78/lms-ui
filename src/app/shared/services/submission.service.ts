@@ -22,7 +22,7 @@ export class SubmissionService {
     const form = new FormData();
     form.append('student_id', uid.toString());
     form.append('test_id', tid.toString());
-    form.append('attempt_number', '20'); // TODO 1
+    form.append('attempt_number', '1');
     return this.http.post(this.baseUrl, form);
   }
 
