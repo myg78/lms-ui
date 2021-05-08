@@ -4,6 +4,7 @@ import {TestScheduleService} from '../../shared/services/test-schedule.service';
 import {TestDetailBasic} from '../../shared/models/test-detail-basic.model';
 import {TestHistoryService} from '../../shared/services/test-history.service';
 import {Submission} from '../../shared/models/submission.model';
+import {UserService} from '../../shared/services/user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,24 +18,27 @@ export class DashboardComponent implements OnInit {
 
   dateFormat = 'EEEE, d MMMM y, h:mm a zzzz';
   simpleDateFormat = 'd MMMM y, h:mm a zzzz';
+  student: number;
 
   constructor(
     private testScheduleService: TestScheduleService,
     private testHistoryService: TestHistoryService,
+    private userService: UserService,
   ) {
   }
 
   ngOnInit(): void {
+    this.student = this.userService.getLoginUser();
     this.getTestSchedule();
     this.getTestHistory();
   }
 
   getTestSchedule(): void {
-    this.tests$ = this.testScheduleService.getTestSchedule(1); // TODO param
+    this.tests$ = this.testScheduleService.getTestSchedule(this.student);
   }
 
   getTestHistory(): void {
-    this.history$ = this.testHistoryService.getTestHistory(1); // TODO param
+    this.history$ = this.testHistoryService.getTestHistory(this.student);
   }
 
 }

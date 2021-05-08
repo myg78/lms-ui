@@ -3,7 +3,6 @@ import {TestDetailBasic} from './test-detail-basic.model';
 export interface Submission {
   id: number;
   test: TestDetailBasic;
-  // timeRemaining: string;
   attempt_number: number;
   submission_status: string;
   start_date: string;

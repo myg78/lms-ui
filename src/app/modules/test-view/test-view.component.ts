@@ -102,7 +102,7 @@ export class TestViewComponent implements OnInit, AfterViewInit {
 
     this.testService.submitTest(this.submission.id, formValue).subscribe(response => {
       console.log('submitted: ' + response['id']);
-      this.router.navigate(['/test-result', {id: 'test'}]);
+      this.router.navigate(['/test-result', {sid: response['id']}]);
     });
   }
 

@@ -47,7 +47,7 @@
               <div class="allvperf">
                 <div class="crse-perf-left">Grade</div>
                 <div class="crse-perf-right">
-                  <div *ngIf="submission?.grade_value; else elseBlock"><span
+                  <div *ngIf="submission?.grading_status; else elseBlock"><span
                     class="per_text2">{{submission.grade_value}} / {{submission.grade_max_value}}</span></div>
                 </div>
               </div>

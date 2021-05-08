@@ -6,6 +6,7 @@ import {TestService} from '../../shared/services/test.service';
 import {forkJoin} from 'rxjs';
 import {TestHistoryService} from '../../shared/services/test-history.service';
 import {mergeMap} from 'rxjs/operators';
+import {UserService} from '../../shared/services/user.service';
 
 @Component({
   selector: 'app-submission',
@@ -24,15 +25,14 @@ export class SubmissionComponent implements OnInit {
     private submissionService: SubmissionService,
     private testService: TestService,
     private testHistoryService: TestHistoryService,
+    private userService: UserService,
   ) {
   }
 
   ngOnInit(): void {
     const sid = +this.route.snapshot.paramMap.get('sid'); // submission id
     const tid = +this.route.snapshot.paramMap.get('tid'); // test id
-    // console.log('submission id: ' + sid);
-    // console.log('test id: ' + tid);
-    const uid = 1; // TODO param
+    const uid = this.userService.getLoginUser(); // user id
     if (sid === 0) {
       this.getTest(uid, tid);
     } else {
@@ -92,7 +92,8 @@ export class SubmissionComponent implements OnInit {
 
   startTest() {
     console.log('start test');
-    this.submissionService.startSubmission(1, this.submission.test.id)
+    const uid = this.userService.getLoginUser();
+    this.submissionService.startSubmission(uid, this.submission.test.id)
       .pipe(
         mergeMap((res1) => this.submissionService.getSubmission(res1['id'])),
       ).subscribe((res2) => {
@@ -101,7 +102,7 @@ export class SubmissionComponent implements OnInit {
     });
   }
 
-  continueTest() {
+  continueTest() { // TODO finalize
     console.log('continue test: ' + this.submission.id);
     this.router.navigate(['/test', {sid: this.submission.id}]);
     // this.submissionService.getSubmission(this.submission.id).subscribe(response => {

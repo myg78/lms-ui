@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {TestScheduleService} from '../../shared/services/test-schedule.service';
 import {TestDetailBasic} from '../../shared/models/test-detail-basic.model';
+import {UserService} from '../../shared/services/user.service';
 
 @Component({
   selector: 'app-test-schedule',
@@ -16,6 +17,7 @@ export class TestScheduleComponent implements OnInit {
 
   constructor(
     private testScheduleService: TestScheduleService,
+    private userService: UserService,
   ) {}
 
   ngOnInit(): void {
@@ -23,7 +25,8 @@ export class TestScheduleComponent implements OnInit {
   }
 
   getTestSchedule(): void {
-    this.tests$ = this.testScheduleService.getTestSchedule(1); // TODO param
+    const uid = this.userService.getLoginUser();
+    this.tests$ = this.testScheduleService.getTestSchedule(uid);
   }
 
 }

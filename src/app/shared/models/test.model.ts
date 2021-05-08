@@ -7,6 +7,5 @@ export interface Test {
   time_limit_in_seconds: number;
   start_date: string;
   due_date: string;
-  // closeDate: string;
   content: Question[];
 }

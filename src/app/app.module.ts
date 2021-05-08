@@ -12,13 +12,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {
-  MatButtonModule,
-  MatIconModule,
-  MatInputModule,
-  MatRadioModule,
-  MatSnackBarModule,
-  MatTableModule,
-  MatTooltipModule
+    MatButtonModule,
+    MatIconModule,
+    MatInputModule, MatMenuModule,
+    MatRadioModule,
+    MatSnackBarModule,
+    MatTableModule,
+    MatTooltipModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TestInfoComponent} from './modules/test-info/test-info.component';
@@ -46,24 +46,25 @@ import {DashboardComponent} from './modules/dashboard/dashboard.component';
     GradesComponent,
     DashboardComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatStepperModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatRadioModule,
-    MatSnackBarModule,
-    MatTableModule,
-    CountdownModule,
-    HttpClientModule,
-    MatIconModule,
-    MatTooltipModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatStepperModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatRadioModule,
+        MatSnackBarModule,
+        MatTableModule,
+        CountdownModule,
+        HttpClientModule,
+        MatIconModule,
+        MatTooltipModule,
+        MatMenuModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -3,6 +3,8 @@ import {TestHistoryService} from '../../shared/services/test-history.service';
 import {Observable} from 'rxjs';
 import {Submission} from '../../shared/models/submission.model';
 import {SubmissionService} from '../../shared/services/submission.service';
+import {UserService} from '../../shared/services/user.service';
+import {shareReplay} from 'rxjs/operators';
 
 @Component({
   selector: 'app-test-history',
@@ -18,15 +20,18 @@ export class TestHistoryComponent implements OnInit {
   constructor(
     private testHistoryService: TestHistoryService,
     private submissionService: SubmissionService,
+    private userService: UserService,
   ) {
   }
 
   ngOnInit(): void {
+    console.log('init history'); // TODO remove
     this.getTestHistory();
   }
 
   getTestHistory(): void {
-    this.submissions = this.testHistoryService.getTestHistory(1); // TODO param
+    const uid = this.userService.getLoginUser();
+    this.submissions = this.testHistoryService.getTestHistory(uid).pipe(shareReplay());
   }
 
   deleteSubmission(sid): void {

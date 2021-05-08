@@ -13,9 +13,10 @@ export class TestHistoryService {
   }
 
   getTestHistory(uid: number): Observable<Submission[]> {
-    console.log('getTestHistory');
+    console.log('getTestHistory1'); // TODO remove1
     const url = `${this.baseUrl}/${uid}/tests`;
     return this.http.get<any>(url);
+    // return null;
   }
 
   getSubmissionForTest(uid: number, tid: number): Observable<Submission> {
