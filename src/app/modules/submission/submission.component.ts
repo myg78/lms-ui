@@ -18,6 +18,7 @@ export class SubmissionComponent implements OnInit {
   submission: Submission;
   dateFormat = 'EEEE, d MMMM y, h:mm a zzzz';
   showStart = false;
+  eligible = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -84,10 +85,25 @@ export class SubmissionComponent implements OnInit {
         this.submission.graded_by = response.graded_by;
         this.submission.grade_value = response.grade_value;
         this.submission.grade_max_value = response.grade_max_value;
+        this.checkIfEligible();
       });
     } else {
       this.showStart = true;
+      this.checkIfEligible();
     }
+  }
+
+  checkIfEligible() {
+    const now = new Date();
+    const openDate = new Date(this.submission.test.start_date);
+    const dueDate = new Date(this.submission.test.due_date);
+    const eligible = now.getTime() >= openDate.getTime() && now.getTime() <= dueDate.getTime();
+    this.eligible = eligible;
+
+    console.log('now: ' + now);
+    console.log('open date: ' + openDate);
+    console.log('due date: ' + dueDate);
+    console.log('eligible: ' + eligible);
   }
 
   startTest() {

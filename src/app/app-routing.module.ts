@@ -8,6 +8,7 @@ import {SubmissionComponent} from './modules/submission/submission.component';
 import {GradesComponent} from './modules/grades/grades.component';
 import {TestScheduleComponent} from './modules/test-schedule/test-schedule.component';
 import {DashboardComponent} from './modules/dashboard/dashboard.component';
+import {TestBuilderComponent} from './modules/test-builder/test-builder.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'submission/test/:tid', component: SubmissionComponent },
   { path: 'test', component: TestViewComponent },
   { path: 'test-result', component: TestResultComponent },
-  { path: 'grades', component: GradesComponent }
+  { path: 'grades', component: GradesComponent },
+  { path: 'test-builder', component: TestBuilderComponent }
 ];
 
 @NgModule({

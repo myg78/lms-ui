@@ -12,13 +12,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {
-    MatButtonModule,
-    MatIconModule,
-    MatInputModule, MatMenuModule,
-    MatRadioModule,
-    MatSnackBarModule,
-    MatTableModule,
-    MatTooltipModule
+  MatButtonModule, MatDatepickerModule, MatExpansionModule,
+  MatIconModule,
+  MatInputModule, MatMenuModule, MatNativeDateModule,
+  MatRadioModule,
+  MatSnackBarModule,
+  MatTableModule,
+  MatTooltipModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TestInfoComponent} from './modules/test-info/test-info.component';
@@ -29,6 +29,8 @@ import {GradesComponent} from './modules/grades/grades.component';
 import {HttpClientModule} from '@angular/common/http';
 import {TestScheduleComponent} from './modules/test-schedule/test-schedule.component';
 import {DashboardComponent} from './modules/dashboard/dashboard.component';
+import {TestBuilderComponent} from './modules/test-builder/test-builder.component';
+import {PrettyjsonPipe} from './shared/pipes/pretty-json-pipe';
 
 
 @NgModule({
@@ -44,27 +46,32 @@ import {DashboardComponent} from './modules/dashboard/dashboard.component';
     TestViewComponent,
     TestResultComponent,
     GradesComponent,
-    DashboardComponent
+    DashboardComponent,
+    TestBuilderComponent,
+    PrettyjsonPipe
   ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatStepperModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatButtonModule,
-        MatRadioModule,
-        MatSnackBarModule,
-        MatTableModule,
-        CountdownModule,
-        HttpClientModule,
-        MatIconModule,
-        MatTooltipModule,
-        MatMenuModule
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatRadioModule,
+    MatSnackBarModule,
+    MatTableModule,
+    CountdownModule,
+    HttpClientModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatMenuModule,
+    MatExpansionModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

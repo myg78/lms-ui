@@ -1,0 +1,185 @@
+<!-- Body Start -->
+<div class="sa4d25">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2 class="st_title"><i class="uil uil-analysis"></i> Create New Test</h2>
+      </div>
+    </div>
+    <form [formGroup]="testForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-12">
+        <div class="course_tabs_1">
+          <div id="add-course-tab" class="step-app">
+            <div class="step-content">
+              <div class="step-tab-panel step-tab-info active" id="tab_step1">
+                <div class="tab-from-content">
+                  <div class="title-icon">
+                    <h3 class="title"><i class="uil uil-info-circle"></i>General Information</h3>
+                  </div>
+                  <div class="course__form">
+                    <div class="general_info10">
+                      <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                          <div class="ui search focus mt-30 lbel25">
+                            <label>Test Title*</label>
+                            <div class="ui left icon input swdh19">
+                              <input formControlName="title" class="prompt srch_explore" type="text" placeholder="Insert your course title."
+                                     name="title" data-purpose="edit-course-title" maxlength="60" id="main[title]"
+                                     value="">
+                              <div class="badge_num">60</div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-2">
+                          <div class="ui search focus mt-30 lbel25">
+                            <label>Test Type*</label>
+                            <div class="ui left icon input swdh19">
+                              <select formControlName="type" class="ui hj145 dropdown cntry152 prompt srch_explore test-type">
+                                <option value="quiz">Quiz</option>
+                                <option value="exam">Exam</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-2">
+                          <div class="ui search focus mt-30 lbel25">
+                            <label>Test Time Limit*</label>
+                            <div class="ui left icon input swdh19">
+                              <input formControlName="timeLimitInSeconds" class="prompt srch_explore" type="text" placeholder="Time limit in seconds"
+                                     name="timeLimit" data-purpose="edit-course-time-limit" maxlength="4" value="">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12">
+                          <div class="course_des_textarea mt-30 lbel25">
+                            <label>Test Description*</label>
+                            <div class="course_des_bg">
+                              <ul class="course_des_ttle">
+                                <li><a href="#"><i class="uil uil-bold"></i></a></li>
+                                <li><a href="#"><i class="uil uil-italic"></i></a></li>
+                                <li><a href="#"><i class="uil uil-list-ul"></i></a></li>
+                                <li><a href="#"><i class="uil uil-left-to-right-text-direction"></i></a></li>
+                                <li><a href="#"><i class="uil uil-right-to-left-text-direction"></i></a></li>
+                                <li><a href="#"><i class="uil uil-list-ui-alt"></i></a></li>
+                                <li><a href="#"><i class="uil uil-link"></i></a></li>
+                                <li><a href="#"><i class="uil uil-text-size"></i></a></li>
+                                <li><a href="#"><i class="uil uil-text"></i></a></li>
+                              </ul>
+                              <div class="textarea_dt">
+                                <div class="ui form swdh339">
+                                  <div class="field">
+                                    <textarea formControlName="description" rows="5" name="description" id="id_course_description"
+                                              placeholder="Insert test description"></textarea>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                          <div class="mt-30 lbel25">
+                            <label>Open Date*</label>
+                          </div>
+                          <div>
+                            <mat-form-field appearance="fill">
+                              <mat-label>Choose a date</mat-label>
+                              <input formControlName="startDate" matInput [matDatepicker]="startDatePicker">
+                              <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+                              <mat-datepicker #startDatePicker></mat-datepicker>
+                            </mat-form-field>
+                          </div>
+                        </div>
+                        <div class="col-lg-3">
+                          <div class="mt-30 lbel25">
+                            <label>Due Date*</label>
+                          </div>
+                          <div>
+                            <mat-form-field appearance="fill">
+                              <mat-label>Choose a date</mat-label>
+                              <input formControlName="dueDate" matInput [matDatepicker]="dueDatePicker">
+                              <mat-datepicker-toggle matSuffix [for]="dueDatePicker"></mat-datepicker-toggle>
+                              <mat-datepicker #dueDatePicker></mat-datepicker>
+                            </mat-form-field>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="step-tab-panel step-tab-location" id="tab_step3">
+                <div class="tab-from-content">
+                  <div class="title-icon">
+                    <h3 class="title"><i class="uil uil-film"></i>Course Content</h3>
+                  </div>
+                  <div class="course__form">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="extra_info">
+                          <h4 class="part__title">Course Content JSON Builder</h4>
+                        </div>
+                        <div class="view_info10">
+                          <div class="row">
+                            <div class="col-lg-12 col-md-12">
+                              <div class="course_des_textarea mt-30 lbel25">
+                                <label>Test Definition*</label>
+                                <div class="course_des_bg">
+
+                                  <div class="textarea_dt">
+                                    <div class="ui form swdh339">
+                                      <div class="field">
+                                        <textarea formControlName="content" rows="5" name="description" id="id_part_description"
+                                                  placeholder="Insert valid test JSON definition"></textarea>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="mt-20">
+                                <mat-accordion>
+                                  <mat-expansion-panel hideToggle>
+                                    <mat-expansion-panel-header>
+                                      <mat-panel-title>
+                                        View JSON sample
+                                      </mat-panel-title>
+                                      <mat-panel-description>
+                                      </mat-panel-description>
+                                    </mat-expansion-panel-header>
+                                    <pre>{{jsonSample}}</pre>
+                                  </mat-expansion-panel>
+                                </mat-accordion>
+                              </div>
+
+
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+            <div class="step-footer step-tab-pager">
+              <div class="mb-30">
+                <button type="submit" data-direction="finish" class="btn btn-default steps_btn">Save Test</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </form>
+  </div>
+</div>
+<!-- Body End -->

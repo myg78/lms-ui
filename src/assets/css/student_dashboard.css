@@ -2368,7 +2368,7 @@ table {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
   border: 0px solid;
   border-radius: 0px;
-  padding-top: 60px;
+  padding-top: 0px;
 }
 
 #add-course-tab > .step-content .title-icon {
@@ -2495,7 +2495,7 @@ table {
 }
 
 .course_tabs_1 {
-  margin-top: 60px;
+  margin-top: 30px;
 }
 
 .title-icon {
