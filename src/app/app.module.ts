@@ -31,6 +31,7 @@ import {TestScheduleComponent} from './modules/test-schedule/test-schedule.compo
 import {DashboardComponent} from './modules/dashboard/dashboard.component';
 import {TestBuilderComponent} from './modules/test-builder/test-builder.component';
 import {PrettyjsonPipe} from './shared/pipes/pretty-json-pipe';
+import {AdminComponent} from './modules/admin/admin.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import {PrettyjsonPipe} from './shared/pipes/pretty-json-pipe';
     GradesComponent,
     DashboardComponent,
     TestBuilderComponent,
+    AdminComponent,
     PrettyjsonPipe
   ],
   imports: [

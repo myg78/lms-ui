@@ -20,9 +20,9 @@
   </div>
   <div class="header_right">
     <ul>
-      <li>
-        <a href="#" class="upload_btn" routerLink="test-builder">Create New Course</a>
-      </li>
+<!--      <li>-->
+<!--        <a href="#" class="upload_btn" routerLink="test-builder">Create New Course</a>-->
+<!--      </li>-->
       <li class="ui dropdown">
         <span class="option_links"><i class='uil uil-envelope-alt'></i><span class="noti_count">3</span></span>
       </li>
@@ -37,7 +37,7 @@
           <span class="crse14s pl-4 pt-3">Test Users</span>
           <div class="auth1lnkprce">
             <div *ngFor="let user of users">
-              <button mat-menu-item (click)="switchUser(user.id.toString())">{{user.firstName}} {{user.lastName}}</button>
+              <button mat-menu-item (click)="switchUser(user)">{{user.firstName}} {{user.lastName}}</button>
             </div>
           </div>
         </mat-menu>

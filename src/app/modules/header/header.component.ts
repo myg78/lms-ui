@@ -25,10 +25,15 @@ export class HeaderComponent implements OnInit {
     this.user = this.userService.getUser(+uid);
   }
 
-  switchUser(uid: string) {
+  switchUser(user: User) {
+    const uid = user.id.toString();
     localStorage.setItem('student', uid);
     this.user = this.userService.getUser(+uid);
-    this.redirectTo('/dashboard');
+    if (user.role === 'instructor') {
+      this.redirectTo('/admin');
+    } else {
+      this.redirectTo('/dashboard');
+    }
   }
 
   redirectTo(uri: string) { // workaround for user switch/redirect

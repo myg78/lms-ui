@@ -5,3 +5,7 @@
 .test-type {
   width: 100%;
 }
+
+.c-required {
+  color: #cc0000;
+}

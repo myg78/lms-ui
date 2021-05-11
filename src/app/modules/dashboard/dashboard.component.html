@@ -52,7 +52,8 @@
                 </a>
                 <div class="fcrse_content">
                   <a href="#" class="crse14s" routerLink="/submission/test/{{test.id}}">{{test.title}}</a>
-                  <span class="crse-cate">{{ (test.description.length>130)? (test.description | slice:0:130)+'...':(test.description) }}</span>
+                  <span
+                    class="crse-cate">{{ (test.description.length > 130) ? (test.description | slice:0:130) + '...' : (test.description) }}</span>
                   <div class="auth1lnkprce">
                     <p class="cr1fot">Opens on {{test.start_date | date:simpleDateFormat}}</p>
                     <p class="cr1fot">Due on {{test.due_date | date:simpleDateFormat}}</p>
@@ -80,4 +81,5 @@
       </div>
     </div>
   </div>
-  <!-- Body End -->
+</div>
+<!-- Body End -->
