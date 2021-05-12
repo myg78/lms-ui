@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getTestSchedule(): void {
-    this.tests$ = this.testScheduleService.getTestSchedule(this.student);
+    this.tests$ = this.testScheduleService.getTestSchedule();
   }
 
   getTestHistory(): void {
