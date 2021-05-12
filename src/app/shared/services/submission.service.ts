@@ -3,11 +3,12 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Submission} from '../models/submission.model';
 import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class SubmissionService {
 
-  private baseUrl = 'http://localhost:8000/api/submissions';
+  private baseUrl = `${environment.apiUrl}/api/submissions`;
 
   constructor(private http: HttpClient) {
   }

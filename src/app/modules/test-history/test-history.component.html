@@ -19,7 +19,7 @@
                   <th scope="col">Title</th>
                   <th class="text-center" scope="col">Test Type</th>
                   <th class="text-center" scope="col">Due Date</th>
-                  <th class="text-center" scope="col">Test Date</th>
+                  <th class="text-center" scope="col">Submission Date</th>
                   <th class="text-center" scope="col">Results</th>
                   <th class="text-center" scope="col" (click)="toggleControl()">Controls</th>
                 </tr>
@@ -30,7 +30,11 @@
                   <td class="cell-ta">{{submission.test.title}}</td>
                   <td class="text-center">{{submission.test.type | titlecase}}</td>
                   <td class="text-center">{{submission.test.due_date | date:dateFormat}}</td>
-                  <td class="text-center">{{submission.submission_date | date: dateFormat}}</td>
+                  <td class="text-center">
+                    <div *ngIf="submission.grading_status == 'Graded'">
+                      {{submission.submission_date | date: dateFormat}}
+                    </div>
+                  </td>
                   <td class="text-center"><a href="#" routerLink="/submission/{{submission.id}}">Review</a></td>
                   <td class="text-center">
                     <div *ngIf="showControls">

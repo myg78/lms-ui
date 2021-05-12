@@ -4,12 +4,13 @@ import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {TestDetailBasic} from '../models/test-detail-basic.model';
 import {FormGroup} from '@angular/forms';
+import {environment} from '../../../environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class TestService {
 
-  private baseUrl = 'http://localhost:8000/api/submissions';
-  private testBaseUrl = 'http://localhost:8000/api/tests';
+  private submissionBaseUrl = `${environment.apiUrl}/api/submissions`;
+  private testBaseUrl = `${environment.apiUrl}/api/tests`;
 
   constructor(private http: HttpClient) {
   }
@@ -22,13 +23,13 @@ export class TestService {
 
   getTestContent(sid: number): Observable<any> {
     console.log('getTestContent');
-    const url = `${this.baseUrl}/${sid}/content`;
+    const url = `${this.submissionBaseUrl}/${sid}/content`;
     return this.http.get<any>(url);
   }
 
   submitTest(sid: number, formValue: string): Observable<any> {
     console.log('submitTest');
-    const url = `${this.baseUrl}/${sid}/submit`;
+    const url = `${this.submissionBaseUrl}/${sid}/submit`;
     const form = new FormData();
     form.append('form_value', formValue);
     return this.http.post(url, form);

@@ -64,7 +64,7 @@
                   </li>
                   <li>
                     <div class="timer_time" *ngIf="test">
-                    <h4 id="timer"><countdown [config]="{ leftTime: test?.time_limit_in_seconds, format: 'm:s', notify: [ 5, 30, 60, 88, 90 ] }"
+                    <h4 id="timer"><countdown [config]="config"
                                               (notify)="onNotify($event)"
                                               (start)="onStart($event)"
                                               (finished)="onFinish($event)">

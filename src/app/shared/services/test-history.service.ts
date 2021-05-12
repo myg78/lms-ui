@@ -3,11 +3,12 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Submission} from '../models/submission.model';
+import {environment} from '../../../environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class TestHistoryService {
 
-  private baseUrl = 'http://localhost:8000/api/students';
+  private baseUrl = `${environment.apiUrl}/api/students`;
 
   constructor(private http: HttpClient) {
   }

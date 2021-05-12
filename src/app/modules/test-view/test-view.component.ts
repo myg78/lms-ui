@@ -17,6 +17,7 @@ export class TestViewComponent implements OnInit, AfterViewInit {
 
   test: Test;
   submission: any;
+  config;
 
   @ViewChild('stepper') stepper: MatStepper;
 
@@ -42,6 +43,7 @@ export class TestViewComponent implements OnInit, AfterViewInit {
       });
       this.test = submission.test;
       this.submission = submission;
+      this.setTimerConfig();
       console.log('test: ' + this.test.title);
     });
     console.log('init end');
@@ -78,6 +80,25 @@ export class TestViewComponent implements OnInit, AfterViewInit {
 
   move(index: number) {
     this.stepper.selectedIndex = index;
+  }
+
+  setTimerConfig() {
+    const submissionStartDate = new Date(this.submission.start_date);
+    console.log('started:' + submissionStartDate);
+
+    const submissionEndDate = new Date(submissionStartDate);
+    submissionEndDate.setSeconds(submissionStartDate.getSeconds() + this.test.time_limit_in_seconds);
+    console.log('until:' + submissionEndDate);
+
+    const now = new Date();
+    const secondsRemaining = Math.ceil(this.getSecondsDiff(submissionEndDate, now));
+    console.log('remaining: ' + secondsRemaining);
+    this.config = {leftTime: secondsRemaining, format: 'm:s', notify: [5, 10, 30, 60, 180, 300]};
+  }
+
+  getSecondsDiff(date1, date2) {
+    const diff = (date1.getTime() - date2.getTime()) / 1000;
+    return diff > 0 ? diff : 0;
   }
 
   onStart($event) {

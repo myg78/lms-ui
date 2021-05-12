@@ -3,15 +3,16 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {TestDetailBasic} from '../models/test-detail-basic.model';
+import {environment} from '../../../environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class TestScheduleService {
 
-  private url = 'http://localhost:8000/api/tests';
+  private url = `${environment.apiUrl}/api/tests`;
 
   constructor(private http: HttpClient) {}
 
-  getTestSchedule(uid: number): Observable<TestDetailBasic[]> {
+  getTestSchedule(): Observable<TestDetailBasic[]> {
     console.log('getTestSchedule');
     return this.http.get<any>(this.url);
   }
