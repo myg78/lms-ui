@@ -32,6 +32,8 @@ import {DashboardComponent} from './modules/dashboard/dashboard.component';
 import {TestBuilderComponent} from './modules/test-builder/test-builder.component';
 import {PrettyjsonPipe} from './shared/pipes/pretty-json-pipe';
 import {AdminComponent} from './modules/admin/admin.component';
+import {NotificationComponent} from './modules/notification/notification.component';
+import {BlankComponent} from './modules/blank/blank.component';
 
 
 @NgModule({
@@ -50,6 +52,8 @@ import {AdminComponent} from './modules/admin/admin.component';
     DashboardComponent,
     TestBuilderComponent,
     AdminComponent,
+    NotificationComponent,
+    BlankComponent,
     PrettyjsonPipe
   ],
   imports: [

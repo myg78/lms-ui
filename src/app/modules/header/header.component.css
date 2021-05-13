@@ -1,3 +1,7 @@
 .welcome {
   width: 150px;
 }
+
+.c-pointer {
+  cursor: pointer;
+}

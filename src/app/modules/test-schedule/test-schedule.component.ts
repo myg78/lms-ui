@@ -26,7 +26,7 @@ export class TestScheduleComponent implements OnInit {
 
   getTestSchedule(): void {
     const uid = this.userService.getLoginUser();
-    this.tests$ = this.testScheduleService.getTestSchedule(uid);
+    this.tests$ = this.testScheduleService.getTestSchedule();
   }
 
 }

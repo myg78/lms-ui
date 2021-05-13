@@ -10,6 +10,8 @@ import {TestScheduleComponent} from './modules/test-schedule/test-schedule.compo
 import {DashboardComponent} from './modules/dashboard/dashboard.component';
 import {TestBuilderComponent} from './modules/test-builder/test-builder.component';
 import {AdminComponent} from './modules/admin/admin.component';
+import {NotificationComponent} from './modules/notification/notification.component';
+import {BlankComponent} from './modules/blank/blank.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -23,7 +25,9 @@ const routes: Routes = [
   { path: 'test-result', component: TestResultComponent },
   { path: 'grades', component: GradesComponent },
   { path: 'test-builder', component: TestBuilderComponent },
-  { path: 'admin', component: AdminComponent }
+  { path: 'admin', component: AdminComponent },
+  { path: 'notification', component: NotificationComponent },
+  { path: 'blank', component: BlankComponent }
 ];
 
 @NgModule({

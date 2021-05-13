@@ -21,7 +21,8 @@
                         <table class="table ucp-table" id="content-table">
                           <thead class="thead-s">
                           <tr>
-                            <th class="text-center">Name</th>
+                            <th></th>
+                            <th scope="col">Title</th>
                             <th class="text-center" scope="col">Grading Status</th>
                             <th class="text-center" scope="col">Score</th>
                             <th class="text-center" scope="col">Out of</th>
@@ -29,7 +30,8 @@
                           </thead>
                           <tbody>
                           <tr *ngFor="let submission of submissions | async">
-                            <td class="text-center">{{submission.test.title}}</td>
+                            <td></td>
+                            <td class="cell-ta">{{submission.test.title}}</td>
                             <td class="text-center">{{submission.grading_status}}</td>
                             <td class="text-center">{{submission.grade_value}}</td>
                             <td class="text-center">{{submission.grade_max_value}}</td>
