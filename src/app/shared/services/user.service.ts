@@ -11,6 +11,10 @@ export class UserService {
     3: {id: 3, firstName: 'Clark', lastName: 'Kent', role: 'student'},
     4: {id: 4, firstName: 'Bruce', lastName: 'Wayne', role: 'student'},
     5: {id: 5, firstName: 'Natasha', lastName: 'Romanoff', role: 'student'},
+    6: {id: 6, firstName: 'Diana', lastName: 'Prince', role: 'student'},
+    7: {id: 7, firstName: 'Steve', lastName: 'Rogers', role: 'student'},
+    8: {id: 8, firstName: 'Scott', lastName: 'Summers', role: 'student'},
+    9: {id: 9, firstName: 'James', lastName: 'Howlett', role: 'student'},
     99: {id: 99, firstName: 'Professor Charles', lastName: 'Xavier', role: 'instructor'},
   };
 
